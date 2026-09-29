@@ -1,0 +1,727 @@
+/* ==========================================================================
+   Relatório de Turno — CCM
+   Identidade visual extraída da logo "Gerência de Serviços Operacionais"
+   (teal institucional + acentos dourado / azul / magenta / verde)
+   ========================================================================== */
+
+:root {
+  /* Cor institucional principal (teal da logo) */
+  --color-primary: #0f6f63;
+  --color-primary-dark: #0a5348;
+  --color-primary-darker: #073d35;
+  --color-primary-light: #e6f2f0;
+  --color-primary-lighter: #f4f9f8;
+
+  /* Acentos extraídos dos ícones da logo */
+  --color-accent-gold: #e8a431;
+  --color-accent-blue: #3b8fce;
+  --color-accent-magenta: #b8316b;
+  --color-accent-green: #3fa671;
+
+  /* Neutros */
+  --color-text: #262b2a;
+  --color-text-light: #667370;
+  --color-text-muted: #8a9895;
+  --color-border: #dde5e3;
+  --color-bg: #f2f5f4;
+  --color-white: #ffffff;
+
+  --font-base: "Segoe UI", "Calibri", "Arial", sans-serif;
+  --shadow-panel: 0 2px 10px rgba(15, 111, 99, 0.08);
+  --radius-md: 10px;
+  --radius-sm: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Layout geral da aplicação (área de configuração)
+   ========================================================================== */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-header__logo {
+  height: 38px;
+  width: auto;
+  background: var(--color-white);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+}
+
+.app-header__title h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.app-header__title p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+/* ==========================================================================
+   Painéis
+   ========================================================================== */
+
+.panel {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-panel);
+  padding: 24px 28px;
+}
+
+.panel__title {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-primary-light);
+}
+
+/* ==========================================================================
+   Formulário
+   ========================================================================== */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field--full {
+  grid-column: 1 / -1;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.field input[type="date"],
+.field input[type="text"],
+.field select,
+.field textarea {
+  font-family: var(--font-base);
+  font-size: 14px;
+  color: var(--color-text);
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+}
+
+/* Responsável: preenchido automaticamente a partir da coluna "Criado por". */
+.field input[readonly] {
+  background: var(--color-primary-lighter);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  cursor: default;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.file-input {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.file-input__name {
+  font-size: 13px;
+  color: var(--color-text-light);
+}
+
+.file-input__name--set {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
+.btn {
+  font-family: var(--font-base);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.btn--secondary {
+  background: var(--color-white);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--color-primary-light);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-light);
+  border-color: var(--color-border);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Mensagens de validação / feedback
+   ========================================================================== */
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 4px 0 8px;
+}
+
+.message {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  border-left: 4px solid transparent;
+}
+
+.message--error {
+  background: #fbeaf0;
+  border-color: var(--color-accent-magenta);
+  color: #8a1f4d;
+}
+
+.message--success {
+  background: #eaf7f0;
+  border-color: var(--color-accent-green);
+  color: #1e6b47;
+}
+
+.message--info {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+/* ==========================================================================
+   Painel do relatório (pré-visualização)
+   ========================================================================== */
+
+.report-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.report-toolbar .panel__title {
+  margin: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.report-toolbar__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.report-viewport {
+  overflow-x: auto;
+  padding: 20px 0;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+}
+
+.report-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   FOLHA DO RELATÓRIO — dimensão fixa 816x1056 (não responsivo)
+   ========================================================================== */
+
+.report-sheet {
+  width: 816px;
+  height: 1056px;
+  min-width: 816px;
+  min-height: 1056px;
+  max-width: 816px;
+  max-height: 1056px;
+  background: var(--color-white);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(7, 61, 53, 0.18);
+  flex-shrink: 0;
+}
+
+/* ---- Cabeçalho ---- */
+
+.sheet-header {
+  background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  padding: 14px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.sheet-header__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+}
+
+/* A logo da Gerência tem tons de teal que se confundem com o fundo do
+   cabeçalho — recebe uma base branca para garantir contraste. A logo do
+   PCM (ícone dourado + texto branco) já contrasta bem direto no teal, então
+   fica sem essa base. */
+.sheet-header__chip--light {
+  background: var(--color-white);
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.sheet-header__chip img {
+  height: 100%;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+/* Logo do PCM maior que a base padrão de 44px. */
+.sheet-header__chip--pcm {
+  height: 68px;
+}
+
+.sheet-header__divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ---- Informações do turno ---- */
+
+.sheet-info {
+  display: flex;
+  padding: 12px 30px;
+  background: var(--color-primary-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sheet-info__item {
+  flex: 1;
+}
+
+.sheet-info__label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-primary-dark);
+  margin: 0 0 3px;
+}
+
+.sheet-info__value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ---- Título da seção ---- */
+
+.sheet-title {
+  padding: 16px 30px 4px;
+}
+
+.sheet-title h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+}
+
+.sheet-title__bar {
+  width: 70px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent-gold) 100%);
+}
+
+/* ---- KPIs ---- */
+
+.sheet-kpis {
+  display: flex;
+  gap: 14px;
+  padding: 14px 30px 6px;
+}
+
+.kpi-card {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-primary-lighter);
+  overflow: hidden;
+}
+
+/* Barra de destaque como elemento próprio (em vez de border-top) para evitar
+   um artefato de renderização do html2canvas onde uma borda espessa em um
+   único lado "vaza" para fora do border-radius durante a exportação. */
+.kpi-card__accent {
+  height: 4px;
+  background: var(--kpi-color, var(--color-primary));
+}
+
+.kpi-card__body {
+  padding: 10px 14px 12px;
+}
+
+.kpi-card__label {
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-light);
+}
+
+.kpi-card__value {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--kpi-color, var(--color-primary-dark));
+  line-height: 1;
+}
+
+/* ---- Observação ---- */
+
+.sheet-observacao {
+  padding: 10px 30px 4px;
+}
+
+.sheet-section-label {
+  margin: 0 0 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary-dark);
+}
+
+.sheet-observacao__box {
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-primary-lighter);
+  border-radius: 0 6px 6px 0;
+  padding: 9px 14px;
+  font-size: 12.5px;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---- Gráficos (EFC e São Luís) ---- */
+
+.sheet-charts-row {
+  display: flex;
+  gap: 14px;
+  padding: 10px 30px 4px;
+}
+
+.sheet-chart-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.sheet-chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--color-white);
+}
+
+/* ---- Tabela de pendências ---- */
+
+.sheet-table-section {
+  padding: 10px 30px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sheet-table-note {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.sheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.sheet-table thead th {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 7px 10px;
+  font-weight: 700;
+}
+
+.sheet-table thead th:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.sheet-table thead th:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.sheet-table tbody td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  vertical-align: top;
+}
+
+.sheet-table tbody tr:nth-child(even) {
+  background: var(--color-primary-lighter);
+}
+
+.sheet-table td.col-oms {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+.sheet-table td.col-tipo {
+  white-space: nowrap;
+}
+
+.sheet-table td.col-status {
+  white-space: nowrap;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(184, 49, 107, 0.12);
+  color: var(--color-accent-magenta);
+}
+
+.sheet-table-empty {
+  padding: 20px 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-style: italic;
+}
+
+/* Modo compacto (aplicado quando há muitos chamados pendentes) */
+.report-sheet--compact .sheet-table {
+  font-size: 10px;
+}
+
+.report-sheet--compact .sheet-table thead th {
+  padding: 5px 8px;
+  font-size: 9px;
+}
+
+.report-sheet--compact .sheet-table tbody td {
+  padding: 4px 8px;
+}
+
+.report-sheet--compact .status-pill {
+  padding: 1px 7px;
+  font-size: 8.5px;
+}
+
+/* ---- Rodapé da folha ---- */
+
+.sheet-footer {
+  margin-top: auto;
+  padding: 8px 30px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9.5px;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Responsividade — apenas da área de configuração (o relatório é fixo)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-header {
+    padding: 14px 16px;
+  }
+
+  .panel {
+    padding: 18px 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}

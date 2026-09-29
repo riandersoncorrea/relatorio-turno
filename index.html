@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Turno — CCM</title>
+  <meta name="description" content="Geração de Relatório de Turno do Centro de Controle de Manutenção (CCM) — aplicação client-side, sem backend.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <img class="app-header__logo" src="assets/logo-gerencia.png" alt="Gerência de Serviços Operacionais">
+      <div class="app-header__title">
+        <h1>Relatório de Turno — CCM</h1>
+        <p>Centro de Controle de Manutenção · Gerência de Serviços Operacionais</p>
+      </div>
+    </header>
+
+    <main class="app-main">
+
+      <!-- Mensagens de validação/sucesso/erro — visíveis em ambos os painéis -->
+      <div id="messages" class="messages" role="status" aria-live="polite"></div>
+
+      <!-- ==================== PAINEL DE PREENCHIMENTO ==================== -->
+      <section class="panel form-panel" id="formPanel" aria-label="Formulário de preenchimento do relatório">
+        <h2 class="panel__title">Dados do Turno</h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="inputData">Data</label>
+            <input type="date" id="inputData" required>
+          </div>
+
+          <div class="field">
+            <label for="inputResponsavel">Responsável</label>
+            <input type="text" id="inputResponsavel" placeholder="Identificado automaticamente pelo Excel" readonly tabindex="-1" title="Preenchido automaticamente a partir da coluna &quot;Criado por&quot; do Excel">
+          </div>
+
+          <div class="field">
+            <label for="inputTurno">Turno</label>
+            <select id="inputTurno" required>
+              <option value="" disabled selected>Selecione o turno</option>
+              <option value="Diurno">Diurno</option>
+              <option value="Noturno">Noturno</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field field--full">
+          <label for="inputObservacao">Observação do Turno</label>
+          <textarea id="inputObservacao" rows="4" placeholder="Descreva ocorrências, pendências ou observações relevantes do turno..."></textarea>
+        </div>
+
+        <div class="field field--full">
+          <label>Arquivo Excel (.xlsx / .xls)</label>
+          <div class="file-input">
+            <button type="button" id="btnSelectFile" class="btn btn--secondary">Selecionar Arquivo Excel</button>
+            <input type="file" id="inputExcel" accept=".xlsx,.xls" hidden>
+            <span id="fileNameLabel" class="file-input__name">Nenhum arquivo selecionado</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btnGerarRelatorio" class="btn btn--primary">Gerar Relatório</button>
+        </div>
+      </section>
+
+      <!-- ==================== PAINEL DO RELATÓRIO GERADO ==================== -->
+      <section class="panel report-panel" id="reportPanel" hidden aria-label="Relatório gerado">
+        <div class="report-toolbar">
+          <h2 class="panel__title">Pré-visualização do Relatório</h2>
+          <div class="report-toolbar__actions">
+            <button type="button" id="btnGerarImagem" class="btn btn--primary">Gerar Imagem (PNG)</button>
+            <button type="button" id="btnGerarPDF" class="btn btn--secondary">Gerar PDF</button>
+            <button type="button" id="btnNovoRelatorio" class="btn btn--ghost">Novo Relatório</button>
+          </div>
+        </div>
+
+        <div class="report-viewport">
+          <!-- As folhas de 816x1056 são inseridas aqui dinamicamente pelo JS -->
+          <div id="reportContainer" class="report-container"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Gerência de Serviços Operacionais &middot; PCM &middot; Aplicação local (HTML/CSS/JS) — sem backend, sem Power Automate</p>
+    </footer>
+  </div>
+
+  <!-- Bibliotecas locais (sem dependência de CDN em produção) -->
+  <script src="lib/xlsx.full.min.js"></script>
+  <script src="lib/chart.umd.min.js"></script>
+  <script src="lib/html2canvas.min.js"></script>
+  <script src="lib/jspdf.umd.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
